@@ -9,7 +9,7 @@ path = 'employee images'
 employeeImg = []
 employeeName = []
 myList = os.listdir(path)
-engine = textSpeach.init()
+
 
 def resize(img, size) :
     width = int(img.shape[1]*size)
@@ -39,7 +39,7 @@ def MarkAttendence(name):
             now = datetime.now()
             timestr = now.strftime('%H:%M')
             f.writelines(f'\n{name}, {timestr}')
-            statment = str('welcome to seasia' + name)
+            
 
 for cl in myList :
     curimg = cv2.imread(f'{path}/{cl}')
