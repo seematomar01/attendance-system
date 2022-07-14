@@ -59,7 +59,7 @@ nbformat==5.4.0
 nest-asyncio==1.5.5
 notebook==6.4.12
 numpy==1.22.4
-opencv-python-headless==4.5.2.52
+opencv-python-headless==4.5.5.62
 pandas==1.4.3
 pandas-compat==0.1.1
 pandocfilters==1.5.0
