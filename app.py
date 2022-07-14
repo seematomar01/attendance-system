@@ -54,7 +54,7 @@ def gen_frames():  # generate frame by frame from camera
     while True:
         # Capture frame-by-frame
         success, frame = camera.read()
-        #print(frame)
+        print(frame)
         
         
 
