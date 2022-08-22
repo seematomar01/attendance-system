@@ -48,13 +48,29 @@ for cl in myList :
 
 EncodeList = findEncoding(employeeImg)
 
-app = Flask(__name__)
-camera = cv2.VideoCapture(0)  # use 0 for web camera
-def gen_frames():  # generate frame by frame from camera
-    while True:
-        # Capture frame-by-frame
-        success, frame = camera.read()
-        print(frame)
+# app = Flask(__name__)
+
+    import cv2
+    import streamlit as st
+
+    st.title("Webcam Application")
+    run = st.checkbox('Run')
+    FRAME_WINDOW = st.image([])
+    cam = cv2.VideoCapture(1)
+
+    while run:
+        ret, frame = cam.read()
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        FRAME_WINDOW.image(frame)
+    else:
+        st.write('Stopped')
+
+# camera = cv2.VideoCapture(1)  # use 0 for web camera
+# def gen_frames():  # generate frame by frame from camera
+#     while True:
+#         # Capture frame-by-frame
+#         success, frame = camera.read()
+#         print(frame)
         
         
 
@@ -87,23 +103,23 @@ def gen_frames():  # generate frame by frame from camera
         
         
         
-        ret, buffer = cv2.imencode('.jpg', frame)
-        frame = buffer.tobytes()
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
+#         ret, buffer = cv2.imencode('.jpg', frame)
+#         frame = buffer.tobytes()
+#         yield (b'--frame\r\n'
+#                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
 
 
-@app.route('/video_feed')
-def video_feed():
-    #Video streaming route. Put this in the src attribute of an img tag
-    return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+# @app.route('/video_feed')
+# def video_feed():
+#     #Video streaming route. Put this in the src attribute of an img tag
+#     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
-@app.route('/')
-def index():
-    """Video streaming home page."""
-    return render_template('index.html')
+# @app.route('/')
+# def index():
+#     """Video streaming home page."""
+#     return render_template('index.html')
 
 
-if __name__ == '__main__':
-    app.run(debug=False)
+# if __name__ == '__main__':
+#     app.run(debug=False)
